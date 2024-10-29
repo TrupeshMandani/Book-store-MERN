@@ -1,8 +1,11 @@
+// Add Detailed comments to the code
 import React from "react";
+// Importing the footer logo
 import footerLogo from "../assets/footer-logo.png";
 
 import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 
+// Footer component
 const Footer = () => {
   return (
     <footer className="bg-slate-800 text-white py-10 px-4">
