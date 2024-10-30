@@ -7,7 +7,7 @@ import { RiUser3Line } from "react-icons/ri";
 import { HiOutlineShoppingCart } from "react-icons/hi";
 import avatarImg from "../assets/avatar.png";
 import { GoHeart } from "react-icons/go";
-import { list } from "postcss";
+import { useSelector } from "react-redux";
 
 const navigation = [
   { name: "Dashboard", href: "/dashboard" },
@@ -19,15 +19,17 @@ const navigation = [
 const Navbar = () => {
   const currentUser = true;
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  console.log(isDropdownOpen);
 
+  // Get cart items from Redux store
+  const cartItems = useSelector((state) => state.cart.cartItems);
+  console.log(cartItems);
   return (
     <header className="max-w-screen-2xl mx-auto px-4 py-6">
       <nav className="flex justify-between items-center ">
         {/* Left side */}
         <div className="flex items-center gap-4">
           <Link to="/">
-            <FaBarsStaggered className="size-6" />
+            <FaBarsStaggered className="text-xl" />
           </Link>
           {/* Search Input */}
           <div className="relative flex items-center mx-2">
@@ -57,7 +59,7 @@ const Navbar = () => {
                 </button>
                 {/* Dropdown Menu */}
                 {isDropdownOpen && (
-                  <div className=" absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-md z-40">
+                  <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-md z-40">
                     <ul>
                       {navigation.map((item) => (
                         <li key={item.name}>
@@ -75,20 +77,22 @@ const Navbar = () => {
               </div>
             ) : (
               <Link to="/login">
-                <RiUser3Line className="size-6" />
+                <RiUser3Line className="text-xl" />
               </Link>
             )}
           </div>
 
           <button>
-            <GoHeart className="size-6" />
+            <GoHeart className="text-xl" />
           </button>
           <Link
             to="/cart"
             className="bg-primary p-1 sm:px-6 px-2 flex items-center rounded-sm"
           >
-            <HiOutlineShoppingCart className="size-6" />
-            <span className="text-sm font-semi">0</span>
+            <HiOutlineShoppingCart className="text-xl" />
+            <span className="text-sm font-semibold ml-2">
+              {cartItems.length}
+            </span>
           </Link>
         </div>
       </nav>
