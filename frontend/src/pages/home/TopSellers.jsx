@@ -36,7 +36,7 @@ const TopSellers = () => {
         );
 
   return (
-    <div className="py-10">
+    <div className="py-10 h-auto m-2">
       <h2 className="text-3xl font-semibold mb-6">Top Sellers</h2>
       {/* Category filtering */}
       <div className="mb-8 flex items-center">
