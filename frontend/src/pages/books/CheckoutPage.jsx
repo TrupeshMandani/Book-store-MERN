@@ -13,7 +13,7 @@ const CheckoutPage = () => {
     console.log(data);
   };
   const currentUser = true; // TODO: get user from AUTH
-  const isChecked = true; // TODO : Do it From AUTH
+  const [isChecked, setIsChecked] = useState(false);
 
   return (
     <div className="min-h-screen p-6 bg-gray-100 flex items-center justify-center">
