@@ -180,3 +180,6 @@ const CheckoutPage = () => {
 };
 
 export default CheckoutPage;
+
+// now analyse the whole project i am going to setup mongoDb and tell me what i have to setup now ans me in comments.
+// what data will be needed
