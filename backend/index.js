@@ -9,7 +9,7 @@ const port = process.env.port || 5001;
 callback function, the `res.send("Hello World")` method sends the response "Hello World" back to the
 client making the request. */
 app.use("/", (req, res) => {
-  res.send("Hello World");
+  res.send("Book Store Server is running");
 });
 
 app.listen(port, () => {
