@@ -1699,3 +1699,14 @@ backend/node_modules/undici-types/retry-handler.d.ts
 backend/node_modules/undici-types/util.d.ts
 backend/node_modules/undici-types/webidl.d.ts
 backend/node_modules/undici-types/websocket.d.ts
+backend/node_modules/dotenv/CHANGELOG.md
+backend/node_modules/dotenv/config.d.ts
+backend/node_modules/dotenv/config.js
+backend/node_modules/dotenv/LICENSE
+backend/node_modules/dotenv/package.json
+backend/node_modules/dotenv/README-es.md
+backend/node_modules/dotenv/README.md
+backend/node_modules/dotenv/lib/cli-options.js
+backend/node_modules/dotenv/lib/env-options.js
+backend/node_modules/dotenv/lib/main.d.ts
+backend/node_modules/dotenv/lib/main.js
