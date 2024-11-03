@@ -6,8 +6,6 @@ import { FiShoppingCart } from "react-icons/fi";
 import getImgUrl from "../../utils/getImgUrl";
 import { useDispatch } from "react-redux";
 
-/* The code snippet you provided is defining a React functional component called `BookCard`. Within
-this component, it is using destructuring to extract the `book` prop passed to the component. */
 const BookCard = ({ book }) => {
   const dispatch = useDispatch();
   const handleAddToCart = (product) => {
@@ -18,8 +16,6 @@ const BookCard = ({ book }) => {
     <div className="rounded-lg transition-shadow duration-300 flex flex-col justify-between p-4 h-full">
       <div className="flex flex-col sm:flex-row sm:items-center gap-4 flex-grow">
         <div className="border rounded-md sm:flex-shrink-0">
-          /* The code snippet you provided is rendering an image inside a `Link`
-          component from React Router. Here's what it's doing: */
           <Link to={`/books/${book._id}`}>
             <img
               src={getImgUrl(book.coverImage)}
@@ -33,9 +29,6 @@ const BookCard = ({ book }) => {
           </Link>
         </div>
         <div className="flex flex-col justify-between flex-grow">
-          /* The code snippet you provided is using the Link component from
-          React Router to create a link to a specific book page based on the
-          `book._id`. Here's what it's doing: */
           <Link to={`/books/${book._id}`}>
             <h3 className="text-xl font-semibold hover:text-blue-600 mb-1">
               {book.title}
