@@ -17,7 +17,7 @@ client making the request. */
  */
 async function main() {
   await mongoose.connect(
-    "mongodb+srv://trupeshpmandani:Z3rvOzNaVIZ9PA2W@cluster0.6pkjh.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+    "mongodb+srv://trupeshpmandani:Z3rvOzNaVIZ9PA2W@cluster0.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
   );
   app.use("/", (req, res) => {
     res.send("Book Store Server is running");
