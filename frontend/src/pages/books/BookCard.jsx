@@ -18,7 +18,7 @@ const BookCard = ({ book }) => {
           <Link to={`/books/${book._id}`}>
             <img
               src={`${getImgUrl(book.coverImage)}`}
-              alt=""
+              alt={book.title}
               className="w-full h-48 sm:h-full bg-cover p-2 rounded-md cursor-pointer hover:scale-105 transition-all duration-200"
             />
           </Link>
@@ -32,9 +32,11 @@ const BookCard = ({ book }) => {
           <p className="text-gray-600 mb-1 line-clamp-3">{book.description}</p>
           <p className="font-medium mb-5">
             ${book.newPrice}
-            <span className="line-through font-normal ml-2">
-              ${book.oldPrice}
-            </span>
+            {book.oldPrice && (
+              <span className="line-through font-normal ml-2">
+                ${book.oldPrice}
+              </span>
+            )}
           </p>
         </div>
       </div>
@@ -49,5 +51,3 @@ const BookCard = ({ book }) => {
     </div>
   );
 };
-
-export default BookCard;
