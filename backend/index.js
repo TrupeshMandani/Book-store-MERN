@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const port = precess.env.port || 5001;
+const port = process.env.port || 5001;
 
 // routes
 
