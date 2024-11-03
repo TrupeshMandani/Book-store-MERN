@@ -17,9 +17,13 @@ const BookCard = ({ book }) => {
         <div className="border rounded-md sm:flex-shrink-0">
           <Link to={`/books/${book._id}`}>
             <img
-              src={`${getImgUrl(book.coverImage)}`}
+              src={getImgUrl(book.coverImage)}
               alt={book.title}
               className="w-full h-48 sm:h-full bg-cover p-2 rounded-md cursor-pointer hover:scale-105 transition-all duration-200"
+              onError={(e) => {
+                e.target.onerror = null; // prevents infinite loop if the default image fails to load
+                e.target.src = "/path/to/default/image.jpg"; // replace with your default image path
+              }}
             />
           </Link>
         </div>
@@ -40,7 +44,6 @@ const BookCard = ({ book }) => {
           </p>
         </div>
       </div>
-      {/* Ensure enough space for the button */}
       <button
         onClick={() => handleAddToCart(book)}
         className="btn-primary w-full py-3 flex items-center justify-center gap-2 mt-2"
@@ -51,3 +54,5 @@ const BookCard = ({ book }) => {
     </div>
   );
 };
+
+export default BookCard;
