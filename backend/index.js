@@ -5,10 +5,10 @@ const app = express();
 const port = process.env.PORT || 5001; // Corrected environment variable casing
 
 // Define a route
-app.use("/", (req, res) => {
+const bookRoutes = require("./src/books/book.route");
+app.use("/api/books", (bookRoutes) => {
   res.send("Book Store Server is running");
 });
-
 // Connect to MongoDB
 async function main() {
   try {
