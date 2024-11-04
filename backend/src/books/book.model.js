@@ -39,11 +39,8 @@ const bookSchema = new mongoose.Schema({
 
   timeStamp: true,
 });
-
 /* `const Book = mongoose.model("Book", bookSchema);` is creating a Mongoose model named "Book" based
-on the defined schema `bookSchema`. This line of code is essentially creating a blueprint for
-documents that will be stored in the MongoDB database collection named "books". The model allows you
-to interact with the "books" collection in the database using methods provided by Mongoose, such as
-creating, reading, updating, and deleting documents. */
+on the defined schema `bookSchema`. This model will be used to interact with the "books" collection
+in the MongoDB database. */
 const Book = mongoose.model("Book", bookSchema);
 module.exports = Book;
