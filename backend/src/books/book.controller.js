@@ -73,6 +73,20 @@ const updateBook = async (req, res) => {
     console.log("Error updating book", error);
   }
 };
+// Delete a Book
+const deleteBook = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const book = await Book.findByIdAndDelete(id);
+    if (!book) {
+      return res.status(404).send({ message: "Book not found" });
+    }
+    res.status(200).send({ message: "Book deleted successfully" });
+  } catch (error) {
+    console.log("Error deleting book", error);
+    res.status(500).send({ message: "Error deleting book" });
+  }
+};
 // Export the functions to be used in the routes
 
 module.exports = {
@@ -80,4 +94,5 @@ module.exports = {
   getAllBooks,
   getSingleBook,
   updateBook,
+  deleteBook,
 };

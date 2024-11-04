@@ -6,6 +6,7 @@ const {
   getAllBooks,
   getSingleBook,
   updateBook,
+  deleteBook,
 } = require("./book.controller");
 
 /* This line of code is setting up a POST route for creating a new book in the application. When a POST
@@ -21,4 +22,8 @@ router.get("/:id", getSingleBook);
 
 // update a Book EndPoint
 router.put("/edit/:id", updateBook);
+
+// Delet a Book EndPoint
+router.delete("/delete/:id", deleteBook);
+
 module.exports = router; // Export the router
