@@ -9,6 +9,7 @@ router.post("/create-book", async (req, res) => {
     res
       .status(201)
       .send({ message: "Book posted successfully", book: newBook });
+    console.log("Book Saved ");
   } catch (error) {
     console.log("Error creating a Book", error);
     res.status(500).send({ message: "Error creating a Book" });
