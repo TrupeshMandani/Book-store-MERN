@@ -49,7 +49,11 @@ const getAllBooks = async (req, res) => {
 //Get a Single Book
 const getSingleBook = async (req, res) => {
   try {
+    const { id } = req.params;
     const book = await Book.findById(req.params.id);
+    if (!book) {
+      return res.status(404).send({ message: "Book not found" });
+    }
     res.status(200).send(book);
   } catch (error) {
     console.log("Error fetching book", error);
@@ -57,8 +61,23 @@ const getSingleBook = async (req, res) => {
   }
 };
 
+const updateBook = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const book = await Book.findByIdAndUpdate(id, req.body, { new: true });
+    if (!book) {
+      return res.status(404).send({ message: "Book not found" });
+    }
+    res.status(200).send({ message: "Book updated successfully", book });
+  } catch (error) {
+    console.log("Error updating book", error);
+  }
+};
+// Export the functions to be used in the routes
+
 module.exports = {
   PostABook,
   getAllBooks,
   getSingleBook,
+  updateBook,
 };

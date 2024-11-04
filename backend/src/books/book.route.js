@@ -1,7 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const Book = require("./book.model"); // Use require to import the Book model
-const { PostABook, getAllBooks, getSingleBook } = require("./book.controller");
+const {
+  PostABook,
+  getAllBooks,
+  getSingleBook,
+  updateBook,
+} = require("./book.controller");
 
 /* This line of code is setting up a POST route for creating a new book in the application. When a POST
 request is made to the "/create-book" endpoint, the `PostABook` function from the `book.controller`
@@ -12,6 +17,8 @@ router.post("/create-book", PostABook);
 router.get("/", getAllBooks);
 
 //Get a Single Book
-router.get("singleBook", getSingleBook);
+router.get("/:id", getSingleBook);
 
+// update a Book EndPoint
+router.put("/edit/:id", updateBook);
 module.exports = router; // Export the router
