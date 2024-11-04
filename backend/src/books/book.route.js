@@ -1,19 +1,14 @@
 const express = require("express");
 const router = express.Router();
 const Book = require("./book.model"); // Use require to import the Book model
+const { PostABook, getAllBooks } = require("./book.controller");
 
-router.post("/create-book", async (req, res) => {
-  try {
-    const newBook = await Book({ ...req.body });
-    await newBook.save();
-    res
-      .status(201)
-      .send({ message: "Book posted successfully", book: newBook });
-    console.log("Book Saved ");
-  } catch (error) {
-    console.log("Error creating a Book", error);
-    res.status(500).send({ message: "Error creating a Book" });
-  }
-});
+/* This line of code is setting up a POST route for creating a new book in the application. When a POST
+request is made to the "/create-book" endpoint, the `PostABook` function from the `book.controller`
+module will be called to handle the request and create a new book. */
+router.post("/create-book", PostABook);
+
+// get all books
+router.get("/", getAllBooks);
 
 module.exports = router; // Export the router
