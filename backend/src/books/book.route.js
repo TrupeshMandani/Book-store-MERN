@@ -8,7 +8,7 @@ body. It then attempts to save this new book to the database asynchronously. If 
 successfully saved, it responds with a status of 200 and sends the saved book as a JSON response. If
 there is an error during the saving process, it catches the error, responds with a status of 500,
 and sends the error as a JSON response. */
-router.post("/", async (req, res) => {
+router.post("/create-book", async (req, res) => {
   const newBook = new Book(req.body);
   try {
     const savedBook = await newBook.save();
