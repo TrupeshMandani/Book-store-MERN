@@ -38,7 +38,7 @@ const PostABook = async (req, res) => {
  */
 const getAllBooks = async (req, res) => {
   try {
-    const books = await Book.find();
+    const books = await Book.find().sort({ createdAt: -1 });
     res.status(200).send(books);
   } catch (error) {
     console.log("Error fetching books", error);
@@ -46,7 +46,19 @@ const getAllBooks = async (req, res) => {
   }
 };
 
+//Get a Single Book
+const getSingleBook = async (req, res) => {
+  try {
+    const book = await Book.findById(req.params.id);
+    res.status(200).send(book);
+  } catch (error) {
+    console.log("Error fetching book", error);
+    res.status(500).send({ message: "Error fetching book" });
+  }
+};
+
 module.exports = {
   PostABook,
   getAllBooks,
+  getSingleBook,
 };
