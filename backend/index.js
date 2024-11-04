@@ -2,31 +2,27 @@ const express = require("express");
 const mongoose = require("mongoose");
 
 const app = express();
-const port = process.env.port || 5001;
+const port = process.env.PORT || 5001; // Corrected environment variable casing
 
-// routes
+// Define a route
+app.use("/", (req, res) => {
+  res.send("Book Store Server is running");
+});
 
-/* This code snippet defines a route in an Express application. When a request is made to the root URL
-("/"), the callback function `(req, res) => { res.send("Hello World"); }` is executed. Inside the
-callback function, the `res.send("Hello World")` method sends the response "Hello World" back to the
-client making the request. */
-
-/**
- * The main function uses mongoose to connect to a MongoDB database at
- * 'mongodb://127.0.0.1:27017/test'.
- */
+// Connect to MongoDB
 async function main() {
-  await mongoose.connect(
-    "mongodb+srv://trupeshpmandani:Z3rvOzNaVIZ9PA2W@cluster0.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-  );
-  app.use("/", (req, res) => {
-    res.send("Book Store Server is running");
-  });
+  try {
+    await mongoose.connect("mongodb://localhost:27017/book-store-MERN");
+    console.log("Connected to MongoDB"); // Log success message
+  } catch (err) {
+    console.error("Error connecting to MongoDB:", err.message); // Log error message
+  }
 }
-main()
-  .then(() => console.log("Connected to MongoDB"))
-  .catch((err) => console.log(err));
 
+// Start the database connection
+main();
+
+// Start the server
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
