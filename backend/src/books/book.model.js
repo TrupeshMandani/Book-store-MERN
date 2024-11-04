@@ -2,9 +2,8 @@ import mongoose from "mongoose";
 
 const mongoose = require("mongoose");
 
-/* This code snippet is defining a Mongoose schema for a "book" document in a MongoDB database. The
-schema specifies the structure of the document by defining the fields it should have, along with
-their data types and validation rules. */
+/* The code snippet you provided is defining a Mongoose schema for a book entity. Let's break down what
+each part of the schema is doing: */
 const bookSchema = new mongoose.Schema({
   title: {
     type: String,
@@ -32,8 +31,6 @@ const bookSchema = new mongoose.Schema({
   },
   createdAt: {
     type: Date,
-    /* The line `default: Date.now,` in the Mongoose schema is setting a default value for the
-    `createdAt` field. */
     default: Date.now,
   },
 
