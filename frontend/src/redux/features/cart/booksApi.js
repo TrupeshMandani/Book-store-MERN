@@ -21,27 +21,34 @@ export const booksApi = createApi({
       query: () => "/",
       providesTags: ["Books"],
     }),
-    fetchSingleBook: builder.query({
+    fetchBookById: builder.query({
       query: (id) => `/${id}`,
+      providesTags: (results, error, id) => [{ type: "Books", id }],
     }),
-    createBook: builder.mutation({
-      query: (book) => ({
-        url: "/create-book",
+    addBook: builder.mutation({
+      query: (newBook) => ({
+        url: `/create-book`,
         method: "POST",
-        body: book,
+        body: newBook,
       }),
+      invalidatesTags: ["Books"],
     }),
     updateBook: builder.mutation({
-      query: ({ id, book }) => ({
+      query: ({ id, ...res }) => ({
         url: `/edit/${id}`,
         method: "PUT",
-        body: book,
+        body: rest,
+        headers: {
+          "Content-Type": "application/json",
+        },
       }),
+      invalidatesTags: ["Books"],
     }),
     deleteBook: builder.mutation({
       query: (id) => ({
         url: `/delete/${id}`,
         method: "DELETE",
+        invalidatesTags: ["Books"],
       }),
     }),
   }),
@@ -49,8 +56,8 @@ export const booksApi = createApi({
 
 export const {
   useFetchAllBooksQuery,
-  useFetchSingleBookQuery,
-  useCreateBookMutation,
+  useFetchBookByIdQuery,
+  useAddBookMutation,
   useUpdateBookMutation,
   useDeleteBookMutation,
 } = booksApi;
