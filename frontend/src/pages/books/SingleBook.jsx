@@ -2,13 +2,16 @@ import React from "react";
 import { FiShoppingCart } from "react-icons/fi";
 import { useParams } from "react-router-dom";
 
-import { getImgUrl } from "../../utils/getImgUrl";
+import getImgUrl from "../../utils/getImgUrl";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/features/cart/cartSlice";
 import { useFetchBookByIdQuery } from "../../redux/features/books/booksApi";
 
 const SingleBook = () => {
   const dispatch = useDispatch();
+  const handleAddToCart = (product) => {
+    dispatch(addToCart(product));
+  };
   const { id } = useParams();
   const { data: book = [], isLoading, isError } = useFetchBookByIdQuery(id);
   if (isLoading) {
