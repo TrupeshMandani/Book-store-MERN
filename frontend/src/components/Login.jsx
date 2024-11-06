@@ -2,12 +2,22 @@ import React from "react";
 import { FcGoogle } from "react-icons/fc";
 import { useForm } from "react-hook-form";
 
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const Login = () => {
-  const handlegoogleSignIn = () => {
-    console.log("Google Sign In");
+  const navigate = useNavigate();
+  const { loginUser, signInWithGoogle } = useAuth();
+  const handlegoogleSignIn = async () => {
+    try {
+      await signInWithGoogle();
+      alert("  Login with Google Succesfully");
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
   };
+
   const [message, setMessage] = React.useState("");
   const {
     register,
@@ -15,7 +25,15 @@ const Login = () => {
     watch,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = async (data) => {
+    try {
+      await loginUser(data.email, data.password);
+      alert("Login Succesfully");
+      navigate("/");
+    } catch (error) {
+      setMessage("Failed to login");
+    }
+  };
   return (
     <div className="h-[calc(100vh-120px)]  flex justify-center items-center">
       <div className="w-full max-w-sm mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">

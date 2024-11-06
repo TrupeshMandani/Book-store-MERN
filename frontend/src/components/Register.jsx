@@ -5,10 +5,15 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 const Register = () => {
-  const { registerUser } = useAuth();
+  const { registerUser, signInWithGoogle } = useAuth();
 
-  const handlegoogleSignIn = () => {
-    console.log("Google Sign In");
+  const handleGoogleSignIn = async () => {
+    try {
+      await signInWithGoogle();
+      alert("  Register with Google Succesfully");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const {
@@ -17,14 +22,13 @@ const Register = () => {
     formState: { errors },
   } = useForm();
 
-  // Register user
+  // Register user with logic if already exixst then giv ethe alert of login to redirect the login page.
   const onSubmit = async (data) => {
-    console.log(data);
     try {
       await registerUser(data.email, data.password);
-      alert("User Registered Successfully");
+      alert("Register Succesfully");
     } catch (error) {
-      console.error("Error:", error);
+      console.log(error);
     }
   };
 
@@ -89,7 +93,7 @@ const Register = () => {
         </p>
 
         <button
-          onClick={handlegoogleSignIn}
+          onClick={handleGoogleSignIn}
           className="bg-secondary hover:bg-blue-700 text-white font-bold py-2 w-full px-4 border rounded shadow mt-4 flex items-center justify-center"
         >
           <FcGoogle className="text-xl mr-2" />

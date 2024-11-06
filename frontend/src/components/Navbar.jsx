@@ -8,6 +8,7 @@ import { HiOutlineShoppingCart } from "react-icons/hi";
 import avatarImg from "../assets/avatar.png";
 import { GoHeart } from "react-icons/go";
 import { useSelector } from "react-redux";
+import { useAuth } from "../context/AuthContext";
 
 const navigation = [
   { name: "Dashboard", href: "/dashboard" },
@@ -17,15 +18,20 @@ const navigation = [
 ];
 
 const Navbar = () => {
-  const currentUser = false;
+  const { currentUser, logoutUser } = useAuth();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const handleLogOut = () => {
+    logoutUser();
+    setIsDropdownOpen(false); // Close dropdown after logout
+  };
 
   // Get cart items from Redux store
   const cartItems = useSelector((state) => state.cart.cartItems);
-  console.log(cartItems);
+
   return (
     <header className="max-w-screen-2xl mx-auto px-4 py-6">
-      <nav className="flex justify-between items-center ">
+      <nav className="flex justify-between items-center">
         {/* Left side */}
         <div className="flex items-center gap-4">
           <Link to="/">
@@ -71,6 +77,12 @@ const Navbar = () => {
                           </Link>
                         </li>
                       ))}
+                      <li
+                        onClick={handleLogOut}
+                        className="block px-4 py-2 text-sm w-full text-left hover:bg-slate-200 rounded-sm cursor-pointer"
+                      >
+                        Logout
+                      </li>
                     </ul>
                   </div>
                 )}
@@ -91,7 +103,7 @@ const Navbar = () => {
           >
             <HiOutlineShoppingCart className="text-xl" />
             <span className="text-sm font-semibold ml-2">
-              {cartItems.length}
+              {cartItems.length || 0}
             </span>
           </Link>
         </div>
