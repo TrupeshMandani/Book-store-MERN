@@ -16,7 +16,7 @@ export const AuthProvide = ({ children }) => {
   const [loading, setLoading] = useState(true);
   // register a User Function
   const registerUser = async (email, password) => {
-    return await jcreateUserWithEmailAndPassword(email, password, auth);
+    return await createUserWithEmailAndPassword(email, password, auth);
   };
   const value = {
     currentUser,

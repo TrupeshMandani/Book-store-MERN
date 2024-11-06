@@ -23,7 +23,7 @@ const Register = () => {
       await registerUser(data.email, data.password);
       alert("User Registered Successfully");
     } catch {
-      console.log("Error");
+      console.log("Error", console.error());
     }
   };
   return (
