@@ -16,8 +16,17 @@ export const AuthProvide = ({ children }) => {
   const [loading, setLoading] = useState(true);
   // register a User Function
   const registerUser = async (email, password) => {
-    return await createUserWithEmailAndPassword(email, password, auth);
+    return await createUserWithEmailAndPassword(auth, email, password);
   };
+  // Login The User
+  const loginUser = async (email, password) => {
+    return await signInWithEmailAndPassword(auth, email, password);
+  };
+  // Logout The User
+  const logoutUser = async () => {
+    return await signOut(auth);
+  };
+
   const value = {
     currentUser,
     registerUser,
