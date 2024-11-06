@@ -3,7 +3,9 @@ import { FcGoogle } from "react-icons/fc";
 import { useForm } from "react-hook-form";
 
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 const Register = () => {
+  const { registerUser } = useAuth();
   const handlegoogleSignIn = () => {
     console.log("Google Sign In");
   };
@@ -13,7 +15,17 @@ const Register = () => {
     watch,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+
+  // Register user
+  const onSubmit = async (data) => {
+    console.log(data);
+    try {
+      await registerUser(data.email, data.password);
+      alert("User Registered Successfully");
+    } catch {
+      console.log("Error");
+    }
+  };
   return (
     <div className="h-[calc(100vh-120px)]  flex justify-center items-center">
       <div className="w-full max-w-sm mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
