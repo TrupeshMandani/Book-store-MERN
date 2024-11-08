@@ -1,3 +1,5 @@
+/* This code snippet is setting up routing for a React application using the `react-router-dom`
+library. Here's a breakdown of what the code is doing: */
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "../App";
 import Home from "../pages/home/Home";
@@ -5,7 +7,7 @@ import Login from "../components/Login";
 import Register from "../components/Register";
 import CartPage from "../pages/books/CartPage";
 import CheckoutPage from "../pages/books/CheckoutPage";
-import SingleBook from "../pages/books/SIngleBook";
+import SingleBook from "../pages/books/SingleBook";
 
 const router = createBrowserRouter([
   {

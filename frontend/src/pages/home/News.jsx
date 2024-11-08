@@ -1,3 +1,5 @@
+/* This code snippet is a React component called `News` that displays a news section using the Swiper
+library for a carousel/slider effect. Here's a breakdown of what the code is doing: */
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";

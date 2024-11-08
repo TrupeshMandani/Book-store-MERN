@@ -1,3 +1,5 @@
+/* This code snippet is setting up an authentication context in a React application using Firebase
+authentication. Here's a breakdown of what the code is doing: */
 import { createContext, useEffect, useState } from "react";
 
 import { useContext } from "react";

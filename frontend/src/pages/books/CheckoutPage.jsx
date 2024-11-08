@@ -1,3 +1,12 @@
+/**
+ * The CheckoutPage component in a React application handles the checkout process for a shopping cart,
+ * including form submission for cash on delivery with user details and address input.
+ * @returns The `CheckoutPage` component is being returned. It is a functional component that displays
+ * a form for users to fill in their personal details for a cash on delivery checkout process. The form
+ * includes fields for name, email, phone number, address, city, country, state, and zipcode. Users are
+ * required to agree to the terms and conditions before placing an order. The total price and number of
+ * items
+ */
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";

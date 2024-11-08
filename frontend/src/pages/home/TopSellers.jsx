@@ -1,3 +1,5 @@
+/* This code snippet is a React component named `TopSellers` that displays a list of books categorized
+as "Top Sellers". Here's a breakdown of what the code is doing: */
 import React, { useEffect, useState } from "react";
 import BookCard from "../books/BookCard";
 import { Swiper, SwiperSlide } from "swiper/react";

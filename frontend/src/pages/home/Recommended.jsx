@@ -1,3 +1,5 @@
+/* This code snippet is a React component named `Recommended` that displays a list of recommended books
+using the Swiper library for a carousel/slider effect. Here's a breakdown of what the code is doing: */
 import React, { useEffect, useState } from "react";
 // Import Swiper styles
 import "swiper/css";

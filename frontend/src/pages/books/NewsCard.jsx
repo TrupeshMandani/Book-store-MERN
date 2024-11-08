@@ -1,3 +1,11 @@
+/**
+ * The NewsCard component in React renders a card displaying news item details such as image, title,
+ * and description with hover effects.
+ * @returns The NewsCard component is being returned. It is a functional component that displays a news
+ * card with an image, title, and description. The component takes an `item` prop as input, which
+ * contains information about the news item to be displayed. The component structure includes a link
+ * wrapping an image, the title displayed as a heading, and the description displayed as a paragraph.
+ */
 import React from "react";
 import { Link } from "react-router-dom";
 

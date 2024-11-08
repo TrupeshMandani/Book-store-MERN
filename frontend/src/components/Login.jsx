@@ -1,3 +1,5 @@
+/* This code snippet is a React component for a login form. Here's a breakdown of what the code is
+doing: */
 import React from "react";
 import { FcGoogle } from "react-icons/fc";
 import { useForm } from "react-hook-form";

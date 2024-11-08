@@ -1,3 +1,5 @@
+/* The code you provided is setting up a Firebase configuration in a JavaScript file. Here's a
+breakdown of what each part of the code is doing: */
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";

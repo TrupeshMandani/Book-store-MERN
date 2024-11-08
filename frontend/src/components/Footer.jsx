@@ -1,3 +1,9 @@
+/**
+ * The above code defines a React functional component for a footer section with logo, navigation
+ * links, newsletter subscription form, privacy links, and social media icons.
+ * @returns The code is returning a functional component called Footer, which represents the footer
+ * section of a website. The footer includes two main sections:
+ */
 // Add Detailed comments to the code
 import React from "react";
 // Importing the footer logo

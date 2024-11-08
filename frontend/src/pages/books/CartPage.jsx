@@ -1,3 +1,5 @@
+/* This code snippet is a React component called `CartPage` that represents a shopping cart page. It
+utilizes React, Redux, and React Router. Here's a breakdown of what the code is doing: */
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";

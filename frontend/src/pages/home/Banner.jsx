@@ -1,3 +1,4 @@
+/* The code you provided is a React functional component named `Banner`. */
 import React from "react";
 import "../../App.css";
 import bannerIMG from "../../assets/banner.png";

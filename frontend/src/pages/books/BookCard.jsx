@@ -1,4 +1,5 @@
 /* This code snippet is defining a React functional component called `BookCard`. */
+/* This code snippet is defining a React functional component called `BookCard`. */
 import React from "react";
 import { Link } from "react-router-dom";
 import { addToCart } from "../../redux/features/cart/cartSlice";

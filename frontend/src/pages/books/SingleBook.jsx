@@ -1,3 +1,11 @@
+/**
+ * The SingleBook component fetches and displays details of a book, allowing users to add it to the
+ * cart.
+ * @returns The `SingleBook` component is being returned. It displays information about a specific book
+ * fetched by its ID, including the title, author, publication date, category, description, and an
+ * option to add the book to the cart. If the book data is still loading, it shows a "Loading..."
+ * message, and if there is an error fetching the book, it displays an "Error fetching book"
+ */
 import React from "react";
 import { FiShoppingCart } from "react-icons/fi";
 import { useParams } from "react-router-dom";

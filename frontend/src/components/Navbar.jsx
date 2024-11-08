@@ -1,3 +1,5 @@
+/* This code snippet is a React component called `Navbar` that represents a navigation bar for a web
+application. Here's a breakdown of what the code does: */
 "use client";
 import React, { useState } from "react";
 import { FaBarsStaggered } from "react-icons/fa6";
