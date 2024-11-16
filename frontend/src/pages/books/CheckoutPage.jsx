@@ -53,7 +53,7 @@ const CheckoutPage = () => {
       console.error("error placing an Order", error);
     }
   };
-  const [createOrder, { isLoading, error }] = useCreateOrderMutation;
+  const [createOrder, { isLoading, error }] = useCreateOrderMutation();
   const { currentUser } = useAuth();
   const [isChecked, setIsChecked] = useState(false);
   if (isLoading) return <div> Loading...</div>;
