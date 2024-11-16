@@ -19,7 +19,7 @@ const CheckoutPage = () => {
     .reduce((acc, item) => acc + item.newPrice, 0)
     .toFixed(2);
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log(data);
     const newOrder = {
       name: data.name,
@@ -35,7 +35,11 @@ const CheckoutPage = () => {
       productsIds: cartItems.map((item) => item._id),
       total,
     };
-    console.log(newOrder);
+    try {
+      //await
+    } catch (error) {
+      console.error("error placing an Order", error);
+    }
   };
   const { currentUser } = useAuth();
   const [isChecked, setIsChecked] = useState(false);
