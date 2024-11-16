@@ -20,7 +20,9 @@ app.use(express.json()); // Parse JSON bodies
 
 // Define a route
 const bookRoutes = require("./src/books/book.route");
+const orderRoutes = require("./src/order/order.route");
 app.use("/api/books", bookRoutes);
+app.use("/api/orders", orderRoutes);
 // Connect to MongoDB
 async function main() {
   try {
