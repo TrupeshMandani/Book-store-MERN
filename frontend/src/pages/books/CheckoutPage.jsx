@@ -41,21 +41,13 @@ const CheckoutPage = () => {
     try {
       await createOrder(newOrder).unwrap();
       Swal.fire({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
+        title: "Confirm Order",
+        text: "Your order has been placed",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          Swal.fire({
-            title: "Deleted!",
-            text: "Your file has been deleted.",
-            icon: "success",
-          });
-        }
+        confirmButtonText: "Yes, It's Okay ",
       });
     } catch (error) {
       console.error("error placing an Order", error);
