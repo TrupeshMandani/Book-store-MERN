@@ -5,6 +5,6 @@ const createAOrder = async () => {
     res.status(201).json(saveOrder);
   } catch (error) {}
 };
-module.export = {
+module.exports = {
   createAOrder,
 };

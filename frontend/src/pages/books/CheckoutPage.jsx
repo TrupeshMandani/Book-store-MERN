@@ -12,6 +12,9 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../../context/AuthContext";
+import Swal from "sweetalert2";
+
+import { useCreateOrderMutation } from "../../redux/features/orders/ordersApi";
 
 const CheckoutPage = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);
@@ -36,14 +39,32 @@ const CheckoutPage = () => {
       total,
     };
     try {
-      //await
+      await createOrder(newOrder).unwrap();
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            icon: "success",
+          });
+        }
+      });
     } catch (error) {
       console.error("error placing an Order", error);
     }
   };
+  const [createOrder, { isLoading, error }] = useCreateOrderMutation;
   const { currentUser } = useAuth();
   const [isChecked, setIsChecked] = useState(false);
-
+  if (isLoading) return <div> Loading...</div>;
   return (
     <div className="min-h-screen p-6 bg-gray-100 flex items-center justify-center">
       <div className="container max-w-screen-lg mx-auto">
