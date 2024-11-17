@@ -4,20 +4,21 @@ import { getBaseURL } from "../../../utils/baseURL";
 export const ordersApi = createApi({
   reducerPath: "ordersApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: `${getBaseURL()}/api/orders`,
+    baseUrl: `${getBaseURL()}/ api / orders`,
     credentials: "include",
   }),
   tagTypes: ["Orders"],
   endpoints: (builder) => ({
     createOrder: builder.mutation({
       query: (newOrder) => ({
-        url: `/`,
+        url: "/",
         method: "POST",
         body: newOrder,
-        credentials: "include",
       }),
-      invalidatesTags: [" Orders "],
+    }),
+    getOrderByEmail: builder.query({
+      query: (email) => `/${email}`,
     }),
   }),
 });
-export const { useCreateOrderMutation } = ordersApi;
+export const { useCreateOrderMutation, useGetOrderByEmailQuery } = ordersApi; // Pull out the useMuationHook

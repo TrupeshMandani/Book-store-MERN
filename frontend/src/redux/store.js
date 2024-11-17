@@ -1,5 +1,3 @@
-/* This code snippet is setting up a Redux store using Redux Toolkit. Here's a breakdown of what it's
-doing: */
 import { configureStore } from "@reduxjs/toolkit";
 
 import cartReducer from "./features/cart/cartSlice";
@@ -14,4 +12,5 @@ export const store = configureStore({
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(booksApi.middleware, ordersApi.middleware),
+  devTools: process.env.NODE_ENV !== "production",
 });
