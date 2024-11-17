@@ -1,24 +1,28 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query";
-import { getBaseURL } from "../../../utils/baseURL";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { getBaseURL } from "../../../utils/baseURL"; // Adjust path to your project structure
 
 export const ordersApi = createApi({
-  reducerPath: "ordersApi",
+  reducerPath: "ordersApi", // Unique key for this API slice
   baseQuery: fetchBaseQuery({
-    baseUrl: `${getBaseURL()}/ api / orders`,
-    credentials: "include",
+    baseUrl: `${getBaseURL()}/api/orders`, // Base URL for the API
+    credentials: "include", // Sends cookies with requests if needed
   }),
-  tagTypes: ["Orders"],
+  tagTypes: ["Orders"], // Tags for cache management
   endpoints: (builder) => ({
+    // Mutation for creating an order
     createOrder: builder.mutation({
       query: (newOrder) => ({
-        url: "/",
-        method: "POST",
-        body: newOrder,
+        url: "/", // API endpoint for creating an order
+        method: "POST", // HTTP method
+        body: newOrder, // Payload
       }),
     }),
+    // Query for fetching orders by email
     getOrderByEmail: builder.query({
-      query: (email) => `/${email}`,
+      query: (email) => `/${email}`, // API endpoint for fetching orders by email
     }),
   }),
 });
-export const { useCreateOrderMutation, useGetOrderByEmailQuery } = ordersApi; // Pull out the useMuationHook
+console.log(ordersApi);
+// Exporting generated hooks
+export const { useCreateOrderMutation, useGetOrderByEmailQuery } = ordersApi;

@@ -12,10 +12,12 @@ const CheckoutPage = () => {
     .reduce((acc, item) => acc + item.newPrice, 0)
     .toFixed(2);
   const { register, handleSubmit } = useForm();
+  console.log(useCreateOrderMutation); // Should log a function
 
-  // Hook placed at the top of the component
   const [createOrder, { isLoading, error }] = useCreateOrderMutation();
-  const navigate = useNavigate;
+  console.log("Create Order Function:", createOrder); // Should log a function
+
+  const navigate = useNavigate();
 
   const { currentUser } = useAuth();
   const [isChecked, setIsChecked] = useState(false);

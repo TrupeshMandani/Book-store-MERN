@@ -3,7 +3,6 @@ import { configureStore } from "@reduxjs/toolkit";
 import cartReducer from "./features/cart/cartSlice";
 import { booksApi } from "./features/books/booksApi";
 import { ordersApi } from "./features/orders/ordersApi";
-
 export const store = configureStore({
   reducer: {
     cart: cartReducer,
@@ -12,5 +11,4 @@ export const store = configureStore({
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(booksApi.middleware, ordersApi.middleware),
-  devTools: process.env.NODE_ENV !== "production",
 });
