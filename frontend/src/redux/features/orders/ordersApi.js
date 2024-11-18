@@ -23,6 +23,5 @@ export const ordersApi = createApi({
     }),
   }),
 });
-console.log(ordersApi);
 // Exporting generated hooks
 export const { useCreateOrderMutation, useGetOrderByEmailQuery } = ordersApi;

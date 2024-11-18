@@ -4,6 +4,7 @@ import { useAuth } from "../../context/AuthContext";
 
 const OrderPage = () => {
   const { currentUser } = useAuth();
+  console.log("Current User:", currentUser);
 
   const {
     data: orders = [],
