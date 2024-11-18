@@ -19,9 +19,10 @@ export const ordersApi = createApi({
     }),
     // Query for fetching orders by email
     getOrderByEmail: builder.query({
-      query: (email) => `/${email}`, // API endpoint for fetching orders by email
+      query: (email) => `email/${email}`, // API endpoint for fetching orders by email
     }),
   }),
 });
+
 // Exporting generated hooks
 export const { useCreateOrderMutation, useGetOrderByEmailQuery } = ordersApi;

@@ -1,43 +1,42 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const Db_URL =
-  process.env.MONGODB_URI ||
-  "mongodb+srv://trupeshpmandani:Trupe5h1234@cluster0.6pkjh.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"; // Corrected environment variable casing
+require("dotenv").config(); // Load environment variables from .env file
 const app = express();
-const port = process.env.PORT || 5001; // Corrected environment variable casing
+const port = process.env.PORT || 5001;
 
-// Middleware
-/* `app.use(cors());` is setting up Cross-Origin Resource Sharing (CORS) middleware in the Express
-application. This allows the server to handle requests from different origins. */
+// Import routes
+const bookRoutes = require("./src/books/book.route");
+const orderRoutes = require("./src/order/order.route");
+
+// Middleware setup
 app.use(
   cors({
     origin: "http://localhost:5173",
     credentials: true,
   })
 );
-app.use(express.json()); // Parse JSON bodies
+app.use(express.json()); // Parse JSON request bodies
 
-// Define a route
-const bookRoutes = require("./src/books/book.route");
-const orderRoutes = require("./src/order/order.route");
+// Use routes
 app.use("/api/books", bookRoutes);
 app.use("/api/orders", orderRoutes);
-// Connect to MongoDB
+
+// MongoDB connection and server startup
 async function main() {
   try {
+    const Db_URL =
+      process.env.MONGODB_URI ||
+      "mongodb+srv://trupeshpmandani:Trupe5h1234@cluster0.6pkjh.mongodb.net/?retryWrites=true&w=majority";
     await mongoose.connect(Db_URL);
-    console.log("Connected to MongoDB"); // Log success message
-    app.use("/", (req, res) => res.send("Book server is running yeyyyyy "));
+    console.log("Connected to MongoDB");
   } catch (err) {
-    console.error("Error connecting to MongoDB:", err.message); // Log error message
+    console.error("Error connecting to MongoDB:", err.message);
   }
 }
 
-// Start the database connection
 main();
 
-// Start the server
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });

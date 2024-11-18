@@ -4,21 +4,34 @@ import { useAuth } from "../../context/AuthContext";
 
 const OrderPage = () => {
   const { currentUser } = useAuth();
-  console.log("Current User:", currentUser);
+
+  // Check if currentUser is defined
+  if (!currentUser || !currentUser.email) {
+    console.error("No user logged in.");
+    return <div>Please log in to view your orders.</div>;
+  }
 
   const {
-    data: orders = [],
+    data: orders = [], // Default to empty array if data is not available
     isLoading,
     isError,
+    error,
   } = useGetOrderByEmailQuery(currentUser.email);
+
+  // Log the fetched orders to verify the data
+  console.log("Fetched orders:", orders);
+
   if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div>Error geting orders data</div>;
+
+  if (isError) {
+    console.error("Error fetching orders:", error);
+    return <div>Error fetching orders. Please try again later.</div>;
+  }
+
   return (
     <div className="container mx-auto p-6">
       <h2 className="text-2xl font-semibold mb-4">Your Orders</h2>
-      {orders.length === 0 ? (
-        <div>No orders found!</div>
-      ) : (
+      {Array.isArray(orders) && orders.length > 0 ? (
         <div>
           {orders.map((order, index) => (
             <div key={order._id} className="border-b mb-4 pb-4">
@@ -32,7 +45,6 @@ const OrderPage = () => {
               <p className="text-gray-600">Total Price: ${order.totalPrice}</p>
               <h3 className="font-semibold mt-2">Address:</h3>
               <p>
-                {" "}
                 {order.address.city}, {order.address.state},{" "}
                 {order.address.country}, {order.address.zipcode}
               </p>
@@ -45,6 +57,8 @@ const OrderPage = () => {
             </div>
           ))}
         </div>
+      ) : (
+        <div>No orders found!</div>
       )}
     </div>
   );
