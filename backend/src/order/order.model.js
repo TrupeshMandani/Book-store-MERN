@@ -5,7 +5,6 @@ const orderSchema = new mongoose.Schema(
     name: {
       type: String,
       required: true,
-      unique: true,
     },
     email: {
       type: String,
@@ -24,15 +23,23 @@ const orderSchema = new mongoose.Schema(
         type: String,
         required: true,
       },
+      street: {
+        type: String,
+        required: true,
+      },
+      zip: {
+        type: String, // Adjusted to match the frontend payload
+        required: true,
+      },
     },
     phone: {
-      type: Number,
+      type: String, // Changed from `Number` to `String` to allow flexible input
       required: true,
     },
     productsIds: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Product", // THISIS needs to be checks might Cause Errror.
+        ref: "Product",
         required: true,
       },
     ],
@@ -44,6 +51,4 @@ const orderSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const Order = mongoose.model("Order", orderSchema);
-
-module.exports = Order;
+module.exports = mongoose.model("Order", orderSchema);

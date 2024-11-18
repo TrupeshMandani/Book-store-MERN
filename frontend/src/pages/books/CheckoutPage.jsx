@@ -11,48 +11,53 @@ const CheckoutPage = () => {
   const total = cartItems
     .reduce((acc, item) => acc + item.newPrice, 0)
     .toFixed(2);
+
   const { register, handleSubmit } = useForm();
-  console.log(useCreateOrderMutation); // Should log a function
-
-  const [createOrder, { isLoading, error }] = useCreateOrderMutation();
-  console.log("Create Order Function:", createOrder); // Should log a function
-
+  const [createOrder, { isLoading, isError, error }] = useCreateOrderMutation();
   const navigate = useNavigate();
-
   const { currentUser } = useAuth();
   const [isChecked, setIsChecked] = useState(false);
 
   const onSubmit = async (data) => {
-    console.log(data);
     const newOrder = {
       name: data.name,
       email: currentUser?.email,
       phone: data.phone,
       address: {
-        street: data.address,
+        street: data.address, // Match the schema
         city: data.city,
         country: data.country,
         state: data.state,
         zip: data.zipcode,
       },
       productsIds: cartItems.map((item) => item._id),
-      total,
+      totalPrice: Number(total), // Convert to Number to match the backend schema
     };
+
+    console.log("Order Payload Sent:", newOrder);
+
     try {
-      await createOrder(newOrder).unwrap();
+      const response = await createOrder(newOrder).unwrap();
+      console.log("Order Response:", response);
+
       Swal.fire({
-        title: "Confirm Order",
-        text: "Your order has been placed",
-        icon: "warning",
-        showCancelButton: true,
+        title: "Order Confirmed",
+        text: "Your order has been placed successfully!",
+        icon: "success",
         confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, It's Okay ",
+        confirmButtonText: "OK",
       });
-      // THISIS NAVIGATE AFTER THE ORDER IS PLACED
+
       navigate("/orders");
-    } catch (error) {
-      console.error("Error placing an order:", error);
+    } catch (err) {
+      console.error("Error placing an order:", err);
+      Swal.fire({
+        title: "Order Failed",
+        text: err?.data?.message || "Something went wrong. Please try again.",
+        icon: "error",
+        confirmButtonColor: "#d33",
+        confirmButtonText: "OK",
+      });
     }
   };
 
