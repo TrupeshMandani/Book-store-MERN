@@ -3,10 +3,8 @@ const Order = require("./order.model"); // Make sure you import the model
 // Example of the createAOrder function
 const createAOrder = async (req, res) => {
   try {
-    // Your logic to create an order
-    const newOrder = {
-      /* Your order creation logic */
-    };
+    const newOrder = new Order(req.body); // Create a new order document
+    await newOrder.save(); // Save it to the database
     res.status(201).json(newOrder); // Return the newly created order
   } catch (err) {
     console.error("Error creating order:", err);

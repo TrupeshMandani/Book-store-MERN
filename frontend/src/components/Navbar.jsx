@@ -1,5 +1,3 @@
-/* This code snippet is a React component called `Navbar` that represents a navigation bar for a web
-application. Here's a breakdown of what the code does: */
 "use client";
 import React, { useState } from "react";
 import { FaBarsStaggered } from "react-icons/fa6";
@@ -20,7 +18,7 @@ const navigation = [
 ];
 
 const Navbar = () => {
-  const { currentUser, logoutUser } = useAuth();
+  const { currentUser, logoutUser, loading } = useAuth();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const handleLogOut = () => {
@@ -30,6 +28,11 @@ const Navbar = () => {
 
   // Get cart items from Redux store
   const cartItems = useSelector((state) => state.cart.cartItems);
+
+  // Wait for the loading state to be false before rendering Navbar
+  if (loading) {
+    return <div>Loading...</div>; // Or return a spinner/loading component
+  }
 
   return (
     <header className="max-w-screen-2xl mx-auto px-4 py-6">
@@ -59,10 +62,11 @@ const Navbar = () => {
                   className="flex items-center"
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                 >
+                  {/* Display user image or fallback */}
                   <img
-                    src={avatarImg}
+                    src={currentUser?.photoURL || avatarImg}
                     alt="User Avatar"
-                    className="w-8 h-8 rounded-full"
+                    className="w-8 h-8 rounded-full object-cover"
                   />
                 </button>
                 {/* Dropdown Menu */}
