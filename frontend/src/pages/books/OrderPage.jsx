@@ -50,7 +50,7 @@ const OrderPage = () => {
               </p>
               <h3 className="font-semibold mt-2">Products Id:</h3>
               <ul>
-                {order.productIds.map((productId) => (
+                {order.productsIds.map((productId) => (
                   <li key={productId}>{productId}</li>
                 ))}
               </ul>

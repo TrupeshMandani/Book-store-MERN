@@ -10,6 +10,31 @@ import CheckoutPage from "../pages/books/CheckoutPage";
 import SingleBook from "../pages/books/SingleBook";
 import PrivateRoute from "./PrivateRoute";
 import OrdersPae from "../pages/books/OrderPage";
+import React, { Component } from "react";
+
+class ErrorBoundary extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error, info) {
+    console.error("Error:", error);
+    console.error("Info:", info);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return <h1>Something went wrong. Please try again later.</h1>;
+    }
+
+    return this.props.children;
+  }
+}
 
 const router = createBrowserRouter([
   {
@@ -48,9 +73,11 @@ const router = createBrowserRouter([
       {
         path: "/orders",
         element: (
-          <PrivateRoute>
-            <OrdersPae />
-          </PrivateRoute>
+          <ErrorBoundary>
+            <PrivateRoute>
+              <OrdersPae />
+            </PrivateRoute>
+          </ErrorBoundary>
         ),
       },
       //Route for checkout page
