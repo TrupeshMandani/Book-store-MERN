@@ -1,3 +1,10 @@
+/**
+ * The OrderPage component fetches and displays orders associated with the currently logged-in user.
+ * @returns The `OrderPage` component is being returned. This component fetches orders based on the
+ * current user's email using the `useGetOrderByEmailQuery` hook. It displays the user's orders if
+ * available, or shows a message if there are no orders or if there is an error fetching the orders.
+ * The component renders a list of orders with details such as order ID, name, email, phone
+ */
 import React from "react";
 import { useGetOrderByEmailQuery } from "../../redux/features/orders/ordersApi";
 import { useAuth } from "../../context/AuthContext";

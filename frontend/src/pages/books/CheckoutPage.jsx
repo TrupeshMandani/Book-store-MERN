@@ -1,3 +1,5 @@
+/* The above code is a React component called `CheckoutPage` that represents a checkout page for an
+e-commerce website. Here's a summary of what the code is doing: */
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";

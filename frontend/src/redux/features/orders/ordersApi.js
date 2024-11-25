@@ -1,3 +1,5 @@
+/* This code snippet is setting up an API client using Redux Toolkit Query to interact with an API for
+managing orders. Here's a breakdown of what the code is doing: */
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { getBaseURL } from "../../../utils/baseURL"; // Adjust path to your project structure
 

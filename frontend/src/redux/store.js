@@ -1,3 +1,5 @@
+/* This code snippet is setting up a Redux store using Redux Toolkit. Here's a breakdown of what each
+part is doing: */
 import { configureStore } from "@reduxjs/toolkit";
 
 import cartReducer from "./features/cart/cartSlice";
