@@ -11,12 +11,15 @@ router.post("/admin", async (req, res) => {
   try {
     const admin = await User.findOne({ username });
     if (!admin) {
-      res.status(404).send({ message: "Admin not found!" });
-    }
-    if (admin.password !== password) {
-      res.status(401).send({ message: "Invalid password!" });
+      return res.status(404).send({ message: "Admin not found!" });
     }
 
+    // Directly compare the password with the stored password (not recommended)
+    if (admin.password !== password) {
+      return res.status(401).send({ message: "Invalid password!" });
+    }
+
+    // Generate JWT token if authentication is successful
     const token = jwt.sign(
       { id: admin._id, username: admin.username, role: admin.role },
       JWT_SECRET,
@@ -33,7 +36,7 @@ router.post("/admin", async (req, res) => {
     });
   } catch (error) {
     console.error("Failed to login as admin", error);
-    res.status(401).send({ message: "Failed to login as admin" });
+    return res.status(500).send({ message: "Failed to login as admin" });
   }
 });
 
