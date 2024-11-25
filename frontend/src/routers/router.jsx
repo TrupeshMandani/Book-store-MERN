@@ -11,6 +11,8 @@ import SingleBook from "../pages/books/SingleBook";
 import PrivateRoute from "./PrivateRoute";
 import OrdersPae from "../pages/books/OrderPage";
 import React, { Component } from "react";
+import AdminRoute from "./AdminRoute";
+import AdminLogin from "../components/AdminLogin";
 
 class ErrorBoundary extends Component {
   constructor(props) {
@@ -96,24 +98,53 @@ const router = createBrowserRouter([
     ],
   },
   {
+    path: "/admin",
+    element: <AdminLogin />,
+  },
+  {
     path: "/dashboard",
-    element: <div>Dashboard</div>,
+    element: (
+      <AdminRoute>
+        {" "}
+        <div>Admin Dashboadrf</div>
+      </AdminRoute>
+    ),
     children: [
       {
         path: "",
-        element: <div>Dashboard home</div>,
+        element: (
+          <AdminRoute>
+            {" "}
+            <div>main Dashboadrf</div>
+          </AdminRoute>
+        ),
       },
       {
         path: "add-new-book",
-        element: <div>Add new book</div>,
+        element: (
+          <AdminRoute>
+            {" "}
+            <div>Adadd-new-bookmin Dashboadrf</div>
+          </AdminRoute>
+        ),
       },
       {
         path: "edit-books/:id",
-        element: <div>edit books</div>,
+        element: (
+          <AdminRoute>
+            {" "}
+            <div>edit book Dashboadrf</div>
+          </AdminRoute>
+        ),
       },
       {
         path: "manage-books",
-        element: <div>manage books</div>,
+        element: (
+          <AdminRoute>
+            {" "}
+            <div>manage books Dashboadrf</div>
+          </AdminRoute>
+        ),
       },
     ],
   },
