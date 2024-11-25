@@ -8,11 +8,12 @@ const {
   updateBook,
   deleteBook,
 } = require("./book.controller");
+const verifyAdminToken = require("../middleware/verifyAdminToken");
 
 /* This line of code is setting up a POST route for creating a new book in the application. When a POST
 request is made to the "/create-book" endpoint, the `PostABook` function from the `book.controller`
 module will be called to handle the request and create a new book. */
-router.post("/create-book", PostABook);
+router.post("/create-book", verifyAdminToken, PostABook);
 
 // get all books
 router.get("/", getAllBooks);
