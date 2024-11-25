@@ -4,6 +4,7 @@ const cors = require("cors");
 require("dotenv").config(); // Load environment variables from .env file
 const app = express();
 const port = process.env.PORT || 5001;
+const userRoutes = require("./src/users/user.route");
 
 // Import routes
 const bookRoutes = require("./src/books/book.route");
@@ -21,6 +22,7 @@ app.use(express.json()); // Parse JSON request bodies
 // Use routes
 app.use("/api/books", bookRoutes);
 app.use("/api/orders", orderRoutes);
+app.use("/api/auth", userRoutes);
 
 // MongoDB connection and server startup
 async function main() {

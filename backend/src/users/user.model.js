@@ -1,6 +1,7 @@
 /* This code snippet is defining a Mongoose schema for a user in a Node.js application. Here's a
 breakdown of what each part of the code is doing: */
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 
 const userSchema = new ongoose.Schema({
   username: {
@@ -28,7 +29,8 @@ userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) {
     return next();
   }
-  this.password = await bcrypt.hash(this.password, 12);
+  this.password = await bcrypt.hash(this.password, 10);
+  next();
 });
 const User = mongoose.model("User", userSchema);
 module.exports = User;
