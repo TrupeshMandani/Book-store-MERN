@@ -12,7 +12,6 @@ const userSchema = new ongoose.Schema({
     type: String,
     required: true,
     unique: true,
-    enum: ["user", "admin"],
   },
   password: {
     type: String,
