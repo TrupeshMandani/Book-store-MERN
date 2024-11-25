@@ -3,7 +3,7 @@ breakdown of what each part of the code is doing: */
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
-const userSchema = new ongoose.Schema({
+const userSchema = new mongoose.Schema({
   username: {
     type: String,
     required: true,

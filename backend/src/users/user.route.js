@@ -1,4 +1,5 @@
 const express = require("express");
+const User = require("./user.model");
 const router = express.Router();
 
 router.post("/admin", async (req, res) => {
