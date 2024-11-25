@@ -1,3 +1,4 @@
+/* This code snippet is a React component named `App`. Here's a breakdown of what it does: */
 import React from "react";
 import { Outlet } from "react-router-dom";
 import Navbar from "./components/Navbar";
