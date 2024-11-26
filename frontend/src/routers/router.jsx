@@ -14,6 +14,7 @@ import React, { Component } from "react";
 import AdminRoute from "./AdminRoute";
 import AdminLogin from "../components/AdminLogin";
 import DashboardLayout from "../pages/Dashboard/DashboardLayout";
+import Dashboard from "../pages/Dashboard/Dashboard";
 
 class ErrorBoundary extends Component {
   constructor(props) {
@@ -116,7 +117,7 @@ const router = createBrowserRouter([
         element: (
           <AdminRoute>
             {" "}
-            <div>main Dashboadrf</div>
+            <Dashboard />
           </AdminRoute>
         ),
       },
