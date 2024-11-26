@@ -4,6 +4,7 @@ import { getBaseURL } from "../../utils/baseURL";
 import Loading from "../../components/Loading";
 import { useNavigate } from "react-router-dom";
 import { MdIncompleteCircle } from "react-icons/md";
+import axios from "axios";
 
 const Dashboard = () => {
   const [loading, setLoading] = useState(true);
@@ -27,6 +28,7 @@ const Dashboard = () => {
     };
     fetchdata();
   }, []);
+  console.log(data);
   if (loading) return <Loading />;
   return (
     <>
