@@ -5,6 +5,7 @@ import Loading from "../../components/Loading";
 import { useNavigate } from "react-router-dom";
 import { MdIncompleteCircle } from "react-icons/md";
 import axios from "axios";
+import RevenueChart from "./RevenueChart";
 
 const Dashboard = () => {
   const [loading, setLoading] = useState(true);
@@ -127,7 +128,7 @@ const Dashboard = () => {
           </div>
           <div className="p-4 flex-grow">
             <div className="flex items-center justify-center h-full px-4 py-16 text-gray-400 text-3xl font-semibold bg-gray-100 border-2 border-gray-200 border-dashed rounded-md">
-              {/* <RevenueChart /> revenu chart // Thisis RevenueChart */}
+              <RevenueChart />
             </div>
           </div>
         </div>
