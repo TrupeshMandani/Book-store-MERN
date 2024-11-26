@@ -134,7 +134,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "edit-books/:id",
+        path: "edit-book/:id",
         element: (
           <AdminRoute>
             {" "}
