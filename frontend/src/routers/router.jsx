@@ -13,6 +13,7 @@ import OrdersPae from "../pages/books/OrderPage";
 import React, { Component } from "react";
 import AdminRoute from "./AdminRoute";
 import AdminLogin from "../components/AdminLogin";
+import DashboardLayout from "../pages/Dashboard/DashboardLayout";
 
 class ErrorBoundary extends Component {
   constructor(props) {
@@ -106,7 +107,7 @@ const router = createBrowserRouter([
     element: (
       <AdminRoute>
         {" "}
-        <div>Admin Dashboadrf</div>
+        <DashboardLayout />
       </AdminRoute>
     ),
     children: [
