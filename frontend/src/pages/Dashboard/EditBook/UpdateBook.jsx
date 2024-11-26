@@ -25,11 +25,19 @@ const UpdateBook = () => {
       setValue("newPrice", bookData.newPrice);
       setValue("coverImage", bookData.coverImage);
     }
-  });
+  }, [bookData, setValue]);
   const onSubmit = async (data) => {
+    title: data.title;
+    description: data.description;
+    category: data.category;
+    trending: data.trending;
+    oldPrice: data.oldPrice;
+    newPrice: data.newPrice;
+    coverImage: data.coverImage;
     try {
-      await UpdateBook(data).unwrap();
+      await UpdateBook({ id, bookData }).unwrap();
       alert("Book updated successfully!");
+      reset();
     } catch (error) {
       console.error("Failed to update book:", error.message);
       alert("Failed to update book. Please try again.");
