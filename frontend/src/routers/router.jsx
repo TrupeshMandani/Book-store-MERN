@@ -16,6 +16,8 @@ import AdminLogin from "../components/AdminLogin";
 import DashboardLayout from "../pages/Dashboard/DashboardLayout";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import ManageBooks from "../pages/Dashboard/Managebooks/ManageBooks";
+import AddBook from "../pages/Dashboard/AddBook/AddBook";
+import UpdateBook from "../pages/Dashboard/EditBook/UpdateBook";
 
 class ErrorBoundary extends Component {
   constructor(props) {
@@ -127,7 +129,7 @@ const router = createBrowserRouter([
         element: (
           <AdminRoute>
             {" "}
-            <div>Adadd-new-bookmin Dashboadrf</div>
+            <AddBook />
           </AdminRoute>
         ),
       },
@@ -136,7 +138,7 @@ const router = createBrowserRouter([
         element: (
           <AdminRoute>
             {" "}
-            <div>edit book Dashboadrf</div>
+            <UpdateBook />
           </AdminRoute>
         ),
       },
