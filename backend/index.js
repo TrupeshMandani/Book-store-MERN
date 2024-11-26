@@ -9,7 +9,7 @@ const userRoutes = require("./src/users/user.route");
 // Import routes
 const bookRoutes = require("./src/books/book.route");
 const orderRoutes = require("./src/order/order.route");
-
+const adminRoutes = require("./src/stats/admin.stats");
 // Middleware setup
 app.use(
   cors({
@@ -23,6 +23,7 @@ app.use(express.json()); // Parse JSON request bodies
 app.use("/api/books", bookRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/auth", userRoutes);
+app.use("/api/admin", adminRoutes);
 
 // MongoDB connection and server startup
 async function main() {
