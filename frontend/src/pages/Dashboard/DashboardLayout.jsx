@@ -1,35 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { getBaseURL } from "../../utils/baseURL";
-import Loading from "../../components/Loading";
+
 import { Link, useNavigate } from "react-router-dom";
 import { HiViewGridAdd } from "react-icons/hi";
 import { MdIncompleteCircle, MdOutlineManageHistory } from "react-icons/md";
-import axios from "axios";
 
 const DashboardLayout = () => {
-  const [loading, setLoading] = useState(true);
-  const [data, setData] = useState({});
-  const navigate = useNavigate();
-  useEffect(() => {
-    const fetchdata = async () => {
-      try {
-        const response = await axios.get(`${getBaseURL}/api/admin`, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        });
-        setData(response.data);
-        setLoading(false); // Ensure loading stops after fetch
-      } catch (error) {
-        console.error("Error:", error);
-        setLoading(false);
-      }
-    };
-    fetchdata();
-  }, []);
   const handleLogout = () => {};
-  if (loading) return <Loading />;
+
   return (
     <div>
       <section className="flex md:bg-gray-100 min-h-screen overflow-hidden">
