@@ -52,3 +52,5 @@ const orderSchema = new mongoose.Schema(
 );
 
 module.exports = mongoose.model("Order", orderSchema);
+
+// The code snippet defines a Mongoose schema for an order in a Node.js application. The schema includes fields for the customer's name, email, address, phone number, product IDs, total price, and timestamps. The schema also specifies the required fields and data types for each field. The `productsIds` field is an array of `ObjectId` references to the `Product` model. The `timestamps` option is set to `true` to automatically add `createdAt` and `updatedAt` fields to the documents. Finally, the schema is exported as the `Order` model.
