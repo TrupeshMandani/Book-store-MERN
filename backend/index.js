@@ -13,7 +13,7 @@ const adminRoutes = require("./src/stats/admin.stats");
 // Middleware setup
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: ["http://localhost:5173","https://book-store-mern-sage.vercel.app"],
     credentials: true,
   })
 );
@@ -29,8 +29,7 @@ app.use("/api/admin", adminRoutes);
 async function main() {
   try {
     const Db_URL =
-      process.env.MONGODB_URI ||
-      "mongodb+srv://trupeshpmandani:Trupe5h1234@cluster0.6pkjh.mongodb.net/?retryWrites=true&w=majority";
+      process.env.MONGODB_URI ;
     await mongoose.connect(Db_URL);
     console.log("Connected to MongoDB");
   } catch (err) {
