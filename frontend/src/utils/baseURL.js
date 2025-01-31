@@ -1,3 +1,3 @@
 export const getBaseURL = () => {
-  return "http://localhost:5001";
+  return "https://vercel.com/trupesh-mandanis-projects/book-store-mern-backend";
 };
