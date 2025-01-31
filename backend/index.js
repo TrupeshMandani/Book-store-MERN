@@ -32,7 +32,6 @@ app.get("/", (req, res) => {
 // Apply request timeout middleware (prevents 504 errors)
 app.use((req, res, next) => {
   res.setTimeout(9000, () => {
-    // 9-second timeout
     res.status(504).json({ error: "Request timed out" });
   });
   next();
@@ -50,11 +49,7 @@ let isConnected = false; // Prevents redundant connections
 async function connectDB() {
   if (isConnected) return; // Skip if already connected
   try {
-    await mongoose.connect(process.env.MONGODB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      serverSelectionTimeoutMS: 5000, // MongoDB timeout (5s)
-    });
+    await mongoose.connect(process.env.MONGODB_URI);
     isConnected = true;
     console.log("✅ Connected to MongoDB");
   } catch (err) {
