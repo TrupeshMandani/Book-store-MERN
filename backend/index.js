@@ -1,15 +1,17 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-require("dotenv").config(); // Load environment variables from .env file
+require("dotenv").config(); // Load environment variables
+
 const app = express();
 const port = process.env.PORT || 5001;
-const userRoutes = require("./src/users/user.route");
 
 // Import routes
+const userRoutes = require("./src/users/user.route");
 const bookRoutes = require("./src/books/book.route");
 const orderRoutes = require("./src/order/order.route");
 const adminRoutes = require("./src/stats/admin.stats");
+
 // Middleware setup
 app.use(
   cors({
@@ -21,8 +23,19 @@ app.use(
   })
 );
 app.use(express.json()); // Parse JSON request bodies
+
+// Health check route
 app.get("/", (req, res) => {
   res.send("Welcome to the Book Store API");
+});
+
+// Apply request timeout middleware (prevents 504 errors)
+app.use((req, res, next) => {
+  res.setTimeout(9000, () => {
+    // 9-second timeout
+    res.status(504).json({ error: "Request timed out" });
+  });
+  next();
 });
 
 // Use routes
@@ -31,19 +44,34 @@ app.use("/api/orders", orderRoutes);
 app.use("/api/auth", userRoutes);
 app.use("/api/admin", adminRoutes);
 
-// MongoDB connection and server startup
-async function main() {
+// MongoDB connection function
+let isConnected = false; // Prevents redundant connections
+
+async function connectDB() {
+  if (isConnected) return; // Skip if already connected
   try {
-    const Db_URL = process.env.MONGODB_URI;
-    await mongoose.connect(Db_URL);
-    console.log("Connected to MongoDB");
+    await mongoose.connect(process.env.MONGODB_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      serverSelectionTimeoutMS: 5000, // MongoDB timeout (5s)
+    });
+    isConnected = true;
+    console.log("✅ Connected to MongoDB");
   } catch (err) {
-    console.error("Error connecting to MongoDB:", err.message);
+    console.error("❌ MongoDB Connection Error:", err.message);
+    process.exit(1); // Exit if unable to connect
   }
 }
 
-main();
+// Start server only if DB connects successfully
+connectDB().then(() => {
+  app.listen(port, () => {
+    console.log(`🚀 Server is running on port ${port}`);
+  });
+});
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+// Global error handler (catches uncaught errors)
+app.use((err, req, res, next) => {
+  console.error("Unhandled Error:", err);
+  res.status(500).json({ error: "Internal Server Error" });
 });
